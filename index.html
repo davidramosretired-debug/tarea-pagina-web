@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispy Chicken - El Mejor Pollo Frito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --secondary: #8B0000;
+            --dark: #222;
+            --light: #FFF8E7;
+            --accent: #FF6347;
+            --text: #333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Header y Navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            color: white;
+            margin-top: 0;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--secondary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+            margin-right: 15px;
+        }
+
+        /* Specials Section */
+        .specials {
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .menu-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .menu-item p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 10%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 50px;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 10%;
+            background-color: var(--light);
+            text-align: center;
+        }
+
+        .testimonial-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding: 30px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .testimonial-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .testimonial {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonial h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 10%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1556910638-90b65875b3ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 10% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+
+            .about-content {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .hero {
+                padding: 0 5%;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about-img {
+                margin-bottom: 40px;
+            }
+
+            .about-content {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header id="header">
+        <div class="logo">
+            <img src="https://img.icons8.com/color/48/000000/fried-chicken.png" alt="Logo Crispy Chicken">
+            <h1>Crispy<span>Chicken</span></h1>
+        </div>
+        
+        <button class="nav-btn" id="navBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav id="nav">
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>El Mejor Pollo Frito de la Ciudad</h2>
+            <p>Nuestro pollo crujiente, sazonado con la mezcla perfecta de especias y frito a la perfección, es una experiencia que no querrás perderte.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary pulse">Ver Menú</a>
+                <a href="#contact" class="btn">Reservar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section class="specials" id="menu">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú Especial</h2>
+            <p class="section-subtitle">Descubre nuestros platos más populares, preparados con los ingredientes más frescos y nuestro toque secreto.</p>
+            
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-item">
+                    <span class="badge">Más Popular</span>
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pollo Frito Clásico" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Pollo Frito Clásico</h3>
+                        <p>Pollo crujiente sazonado con nuestra mezcla secreta de 11 especias.</p>
+                        <p class="price">$12.99</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Combo Familiar" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Combo Familiar</h3>
+                        <p>12 piezas de pollo, 4 lados y 4 bebidas. Perfecto para compartir.</p>
+                        <p class="price">$29.99</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="menu-item">
+                    <span class="badge">Nuevo</span>
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pollo Picante" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Pollo Picante</h3>
+                        <p>Para los amantes del picante, con nuestra salsa especial "Hot Gold".</p>
+                        <p class="price">$14.99</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Alitas BBQ" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Alitas BBQ</h3>
+                        <p>Alitas bañadas en nuestra salsa BBQ casera, acompañadas de apio y aderezo.</p>
+                        <p class="price">$10.99</p>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sandwich de Pollo" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Sandwich de Pollo</h3>
+                        <p>Pechuga de pollo crujiente con lechuga, tomate y mayonesa especial.</p>
+                        <p class="price">$8.99</p>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="menu-item">
+                    <span class="badge">Recomendado</span>
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Tenders de Pollo" class="menu-img">
+                    <div class="menu-content">
+                        <h3>Tenders de Pollo</h3>
+                        <p>Tiras de pollo empanizadas, perfectas para los más pequeños.</p>
+                        <p class="price">$9.99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="img/pexels-mjrfilms-33387452.jpg" alt="Nuestro Restaurante">
+        </div>
+        <div class="about-content">
+            <h2>Nuestra Historia</h2>
+            <p>Desde 2025, Crispy Chicken ha estado sirviendo el mejor pollo frito de la ciudad. Nuestra receta secreta, pasada de generación en generación, es lo que nos hace únicos.</p>
+            <p>Usamos solo ingredientes frescos y de la más alta calidad. Nuestro pollo es marinado durante 24 horas en una mezcla especial de especias antes de ser frito a la perfección.</p>
+            <p>Lo que comenzó como un pequeño puesto familiar se ha convertido en un referente de la gastronomía local, manteniendo siempre la calidad y el sabor que nos hicieron famosos.</p>
+            <a href="#contact" class="btn btn-primary">Visítanos</a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+            <p class="section-subtitle">La opinión de nuestros clientes es lo más importante para nosotros.</p>
+            
+            <div class="testimonial-container">
+                <!-- Testimonio 1 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente 1">
+                    <h4>María González</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"El mejor pollo frito que he probado en mi vida. La mezcla de especias es simplemente perfecta. ¡Siempre que puedo vengo aquí!"</p>
+                </div>
+                
+                <!-- Testimonio 2 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente 2">
+                    <h4>Carlos Martínez</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Llevo a mi familia aquí todos los viernes. Es nuestra tradición familiar. El pollo es consistente, siempre crujiente y jugoso."</p>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente 3">
+                    <h4>Laura Sánchez</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Me encanta el ambiente familiar del lugar. El servicio es excelente y el pollo picante es mi debilidad. ¡Altamente recomendado!"</p>
+                </div>
+                
+                <!-- Testimonio 4 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Cliente 4">
+                    <h4>Javier López</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"He probado pollo frito en todo el país y este es sin duda el mejor. La crocancia perfecta y el sabor inigualable."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Reserva o Contáctanos</h2>
+            <p class="section-subtitle" style="color: #fff;">Estamos aquí para servirte. Visítanos o haz tu pedido ahora.</p>
+            
+            <div class="contact-form">
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Enviar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Crispy Chicken</h3>
+                <p>El mejor pollo frito de la ciudad desde 1985. Calidad y sabor que nos distinguen.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Horario</h3>
+                <ul>
+                    <li>Lunes - Viernes: 11am - 10pm</li>
+                    <li>Sábado: 11am - 11pm</li>
+                    <li>Domingo: 12pm - 9pm</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</li>
+                    <li><i class="fas fa-phone"></i> 809-988-3174</li>
+                    <li><i class="fas fa-envelope"></i> davidramosretired@gmail.com</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Crispy Chicken. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación responsive
+        const navBtn = document.getElementById('navBtn');
+        const nav = document.getElementById('nav');
+        
+        navBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animación al hacer scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.menu-item, .about-img, .about-content, .testimonial');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Inicializar elementos con opacidad 0 para la animación
+        document.querySelectorAll('.menu-item, .about-img, .about-content, .testimonial').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Formulario de reserva
+        const reservationForm = document.getElementById('reservationForm');
+        
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simular envío del formulario
+            const submitBtn = reservationForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = '¡Reserva Enviada!';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    reservationForm.reset();
+                    
+                    // Mostrar mensaje de éxito
+                    alert('¡Gracias por tu reserva! Nos pondremos en contacto contigo pronto.');
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Scroll suave para los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
